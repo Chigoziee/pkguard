@@ -1,0 +1,36 @@
+[project]
+name = "pkgguard"
+version = "0.1.0"
+description = "Validate npm/PyPI packages before install to catch slopsquatting and hallucinated dependencies"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = ["requests"]
+keywords = ["security", "npm", "pypi", "slopsquatting", "supply-chain", "typosquatting"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Homepage = "https://github.com/chigozie/pkgguard"
+Repository = "https://github.com/chigozie/pkgguard"
+
+[project.scripts]
+pkgguard = "pkgguard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pkgguard*"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
