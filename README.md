@@ -10,7 +10,7 @@ and generally low-trust/newly-published packages.
 ### Python users (pip)
 
 ```bash
-pip install pkgguard
+pip install git+https://github.com/chigozie/pkgguard.git
 ```
 
 ### npm / Node.js users (standalone binary, no Python required)
