@@ -1,5 +1,5 @@
 [project]
-name = "pkgguard"
+name = "pkguard"
 version = "0.1.0"
 description = "Validate npm/PyPI packages before install to catch slopsquatting and hallucinated dependencies"
 readme = "README.md"
@@ -22,14 +22,14 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/chigozie/pkgguard"
-Repository = "https://github.com/chigozie/pkgguard"
+Homepage = "https://github.com/chigoziee/pkguard"
+Repository = "https://github.com/chigoziee/pkguard"
 
 [project.scripts]
-pkgguard = "pkgguard.cli:main"
+pkguard = "pkguard.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["pkgguard*"]
+include = ["pkguard*"]
 
 [build-system]
 requires = ["setuptools>=61.0"]

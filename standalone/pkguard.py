@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-pkgguard — validate npm / PyPI packages before you install them.
+pkguard — validate npm / PyPI packages before you install them.
 
 Usage:
-    pkgguard check requests flask left-pad --ecosystem pypi
-    pkgguard check react react-dom is-even --ecosystem npm
-    pkgguard scan requirements.txt
-    pkgguard scan package.json
-    pkgguard install npm install some-package another-package
-    pkgguard install pip install some-package another-package
+    pkguard check requests flask left-pad --ecosystem pypi
+    pkguard check react react-dom is-even --ecosystem npm
+    pkguard scan requirements.txt
+    pkguard scan package.json
+    pkguard install npm install some-package another-package
+    pkguard install pip install some-package another-package
 """
 import argparse
 import json
@@ -80,7 +80,7 @@ class PackageMetadata:
 
 def _safe_get(url, timeout=8):
     try:
-        resp = requests.get(url, timeout=timeout, headers={"User-Agent": "pkgguard/0.1"})
+        resp = requests.get(url, timeout=timeout, headers={"User-Agent": "pkguard/0.1"})
         return resp
     except requests.RequestException:
         return None
@@ -436,7 +436,7 @@ def cmd_scan(args):
 def cmd_install(args):
     cmd = args.command
     if not cmd or cmd[0] not in ("npm", "pip", "pip3"):
-        print("Usage: pkgguard install <npm install ...|pip install ...>")
+        print("Usage: pkguard install <npm install ...|pip install ...>")
         sys.exit(1)
     ecosystem = "npm" if cmd[0] == "npm" else "pypi"
     pkg_names = [c for c in cmd[2:] if not c.startswith("-")]
@@ -445,7 +445,7 @@ def cmd_install(args):
         print("No package names detected in command.")
         sys.exit(1)
 
-    print(f"pkgguard: validating {len(pkg_names)} package(s) before install...\n")
+    print(f"pkguard: validating {len(pkg_names)} package(s) before install...\n")
     reports = run_check(pkg_names, ecosystem)
 
     risky = [r for r in reports if not r.exists or r.risk_score >= 35]
@@ -474,7 +474,7 @@ def summarize(reports):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="pkgguard",
+        prog="pkguard",
         description="Validate packages before install to catch slopsquatting / hallucinated packages."
     )
     sub = parser.add_subparsers(dest="subcommand", required=True)

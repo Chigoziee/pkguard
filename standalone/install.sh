@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# One-liner install for pkgguard (standalone binary, no Python required).
+# One-liner install for pkguard (standalone binary, no Python required).
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/chigozie/pkgguard/main/standalone/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/chigoziee/pkguard/main/standalone/install.sh | bash
 set -euo pipefail
 
-REPO="chigozie/pkgguard"
+REPO="chigoziee/pkguard"
 VERSION="${PKGGUARD_VERSION:-latest}"
 BIN_DIR="${PKGGUARD_INSTALL_DIR:-/usr/local/bin}"
 
@@ -25,14 +25,14 @@ case "$ARCH" in
 esac
 
 if [ "$VERSION" = "latest" ]; then
-    DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/pkgguard-${OS}-${ARCH}"
+    DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/pkguard-${OS}-${ARCH}"
 else
-    DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/pkgguard-${OS}-${ARCH}"
+    DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/pkguard-${OS}-${ARCH}"
 fi
 
-echo "Downloading pkgguard ${VERSION} for ${OS}/${ARCH}..."
-curl -fsSL "$DOWNLOAD_URL" -o "${BIN_DIR}/pkgguard"
-chmod +x "${BIN_DIR}/pkgguard"
+echo "Downloading pkguard ${VERSION} for ${OS}/${ARCH}..."
+curl -fsSL "$DOWNLOAD_URL" -o "${BIN_DIR}/pkguard"
+chmod +x "${BIN_DIR}/pkguard"
 
-echo "Done. pkgguard installed to ${BIN_DIR}/pkgguard"
-echo "  Run: pkgguard --help"
+echo "Done. pkguard installed to ${BIN_DIR}/pkguard"
+echo "  Run: pkguard --help"

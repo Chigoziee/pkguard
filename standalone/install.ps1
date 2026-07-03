@@ -1,24 +1,24 @@
-# One-liner install for pkgguard standalone binary (no Python required).
+# One-liner install for pkguard standalone binary (no Python required).
 #
 # Usage:
-#   irm https://raw.githubusercontent.com/chigozie/pkgguard/main/standalone/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/chigoziee/pkguard/main/standalone/install.ps1 | iex
 param(
     [string]$Version = "latest",
-    [string]$InstallDir = "$env:LOCALAPPDATA\pkgguard"
+    [string]$InstallDir = "$env:LOCALAPPDATA\pkguard"
 )
 
-$repo = "chigozie/pkgguard"
+$repo = "chigoziee/pkguard"
 $arch = if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") { "arm64" } else { "amd64" }
 
 if ($Version -eq "latest") {
-    $url = "https://github.com/${repo}/releases/latest/download/pkgguard-windows-${arch}.exe"
+    $url = "https://github.com/${repo}/releases/latest/download/pkguard-windows-${arch}.exe"
 } else {
-    $url = "https://github.com/${repo}/releases/download/${Version}/pkgguard-windows-${arch}.exe"
+    $url = "https://github.com/${repo}/releases/download/${Version}/pkguard-windows-${arch}.exe"
 }
 
-Write-Host "Downloading pkgguard $Version for windows/$arch..."
+Write-Host "Downloading pkguard $Version for windows/$arch..."
 New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
-$outPath = Join-Path $InstallDir "pkgguard.exe"
+$outPath = Join-Path $InstallDir "pkguard.exe"
 Invoke-WebRequest -Uri $url -OutFile $outPath
 
 if ($env:PATH -notlike "*$InstallDir*") {
@@ -26,5 +26,5 @@ if ($env:PATH -notlike "*$InstallDir*") {
     $env:Path += ";$InstallDir"
 }
 
-Write-Host "Done. pkgguard installed to $outPath"
-Write-Host "  Run: pkgguard --help"
+Write-Host "Done. pkguard installed to $outPath"
+Write-Host "  Run: pkguard --help"

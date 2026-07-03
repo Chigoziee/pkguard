@@ -31,7 +31,7 @@ class PackageMetadata:
 
 def _safe_get(url, timeout=8):
     try:
-        resp = requests.get(url, timeout=timeout, headers={"User-Agent": "pkgguard/0.1"})
+        resp = requests.get(url, timeout=timeout, headers={"User-Agent": "pkguard/0.1"})
         return resp
     except requests.RequestException as e:
         return None

@@ -1,4 +1,4 @@
-# pkgguard
+# pkguard
 
 Validate npm and PyPI packages **before** you install them — catches
 [slopsquatting](https://en.wikipedia.org/wiki/Slopsquatting) (malicious packages
@@ -10,28 +10,28 @@ and generally low-trust/newly-published packages.
 ### Python users (pip)
 
 ```bash
-pip install git+https://github.com/chigozie/pkgguard.git
+pip install git+https://github.com/chigoziee/pkguard.git
 ```
 
 ### npm / Node.js users (standalone binary, no Python required)
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/chigozie/pkgguard/main/standalone/install.ps1 | iex
+irm https://raw.githubusercontent.com/chigoziee/pkguard/main/standalone/install.ps1 | iex
 ```
 
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/chigozie/pkgguard/main/standalone/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/chigoziee/pkguard/main/standalone/install.sh | bash
 ```
 
-Or download the pre-built binary directly from [GitHub Releases](https://github.com/chigozie/pkgguard/releases).
+Or download the pre-built binary directly from [GitHub Releases](https://github.com/chigoziee/pkguard/releases).
 
 ### From source
 
 ```bash
-git clone https://github.com/chigozie/pkgguard.git
-cd pkgguard
+git clone https://github.com/chigoziee/pkguard.git
+cd pkguard
 pip install -e .
 ```
 
@@ -40,25 +40,25 @@ pip install -e .
 ### 1. Check specific packages
 
 ```bash
-pkgguard check requests flask reqeusts --ecosystem pypi
-pkgguard check react react-dom reactt --ecosystem npm
+pkguard check requests flask reqeusts --ecosystem pypi
+pkguard check react react-dom reactt --ecosystem npm
 ```
 
 ### 2. Scan a manifest file
 
 ```bash
-pkgguard scan requirements.txt
-pkgguard scan package.json
+pkguard scan requirements.txt
+pkguard scan package.json
 ```
 
 ### 3. Wrap an install command (blocks risky installs automatically)
 
 ```bash
-pkgguard install pip install some-package another-package
-pkgguard install npm install some-package another-package
+pkguard install pip install some-package another-package
+pkguard install npm install some-package another-package
 
 # override and install anyway:
-pkgguard install pip install some-package --force
+pkguard install pip install some-package --force
 ```
 
 Exits with code `1` if anything is flagged as risky or missing — safe to drop into
@@ -82,11 +82,11 @@ the `install` wrapper.
 
 ## Suggested workflow integration
 
-- **Local dev**: alias `pip install` / `npm install` to `pkgguard install pip install` /
-  `pkgguard install npm install` in your shell profile.
-- **CI**: add `pkgguard scan requirements.txt` (or `package.json`) as a pipeline step
+- **Local dev**: alias `pip install` / `npm install` to `pkguard install pip install` /
+  `pkguard install npm install` in your shell profile.
+- **CI**: add `pkguard scan requirements.txt` (or `package.json`) as a pipeline step
   before dependency installation; non-zero exit fails the build.
-- **Pre-commit hook**: run `pkgguard scan` against manifest files that changed in the
+- **Pre-commit hook**: run `pkguard scan` against manifest files that changed in the
   commit.
 
 ## Building the standalone binary
@@ -102,7 +102,7 @@ Outputs to `standalone/dist/`. Cross-platform builds require running on each tar
 ## Limitations
 
 - The "popular packages" typosquat reference list is a curated sample (~80-100
-  per ecosystem), not exhaustive — extend `pkgguard/popular.py` with packages
+  per ecosystem), not exhaustive — extend `pkguard/popular.py` with packages
   relevant to your org for better coverage.
 - PyPI has no free official downloads API, so download-count scoring only applies
   to npm currently (pypistats.org could be integrated as a future enhancement).

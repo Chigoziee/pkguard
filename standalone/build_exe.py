@@ -1,5 +1,5 @@
 """
-Build standalone pkgguard binaries with PyInstaller (no Python required to run).
+Build standalone pkguard binaries with PyInstaller (no Python required to run).
 
 Prerequisites:
     pip install pyinstaller
@@ -20,7 +20,7 @@ def main():
 
     args = [
         sys.executable, "-m", "PyInstaller",
-        "--name", "pkgguard",
+        "--name", "pkguard",
         "--console",
         "--clean",
         "--noconfirm",
@@ -36,7 +36,7 @@ def main():
         "--hidden-import", "concurrent.futures",
     ])
 
-    args.append("pkgguard.py")
+    args.append("pkguard.py")
 
     print(f"Building for {platform.system()} ({platform.machine()})...")
     subprocess.run(args, check=True)
