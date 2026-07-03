@@ -19,7 +19,14 @@ if ($Version -eq "latest") {
 Write-Host "Downloading pkguard $Version for windows/$arch..."
 New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 $outPath = Join-Path $InstallDir "pkguard.exe"
-Invoke-WebRequest -Uri $url -OutFile $outPath
+
+try {
+    Invoke-WebRequest -Uri $url -OutFile $outPath -ErrorAction Stop
+} catch {
+    Remove-Item -LiteralPath $outPath -ErrorAction SilentlyContinue
+    Write-Error "Download failed (HTTP $($_.Exception.Response.StatusCode.value__)). Has a release been published for '$Version'?"
+    exit 1
+}
 
 if ($env:PATH -notlike "*$InstallDir*") {
     [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$InstallDir", "User")
